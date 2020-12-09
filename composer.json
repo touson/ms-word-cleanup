@@ -1,0 +1,22 @@
+{
+    "name": "touson/mswordcleanup",
+    "description": "Cleans up all the crappy markup when word outputs HTML",
+    "keywords": ["html", "microsoft word", "cleanup"],
+    "license": "GNU General Public License v3.0",
+    "authors": [
+        {
+            "name": "Chris Sewell",
+            "email": "chris@touson.co.uk"
+        }
+    ],
+    "require": {
+        "php": ">=7.2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Touson\\Mswordcleanup\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
