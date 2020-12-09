@@ -15,7 +15,8 @@
     "autoload": {
         "psr-4": {
             "Touson\\Mswordcleanup\\": "src/"
-        }
+        },
+        "files": ["src/helpers.php"]
     },
     "minimum-stability": "dev",
     "prefer-stable": true
