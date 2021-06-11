@@ -45,6 +45,9 @@ class Cleaner
 		$converted_lines = str_ireplace("&nbsp;</div>","</div>",$converted_lines);
 		$converted_lines = str_ireplace("&nbsp;<br />","<br />",$converted_lines);
 		$converted_lines = preg_replace("/ [ ]+/"," ",$converted_lines);
+		$converted_lines = preg_replace("/<div><\/div>/","",$converted_lines);
+		$converted_lines = preg_replace("/<i>/","",$converted_lines);
+		$converted_lines = preg_replace("/<\/i>/","",$converted_lines);
 
 		$converted_lines = str_ireplace("<br /></ol>","</ol>",$converted_lines);
 
@@ -59,6 +62,7 @@ class Cleaner
 		// --- get rid of extra extra <strong> that are sometimes put back in (e.g., in Japanese text)
 		$converted_lines = preg_replace('/(<strong>)+/','<strong>',$converted_lines);
 		$converted_lines = preg_replace('/(<\/strong>)+/','</strong>',$converted_lines);
+		$converted_lines = preg_replace('/<strong>/','',$converted_lines);
 
 		// Delete blank class tags
 		$converted_lines = preg_replace('/ class=""/','',$converted_lines);
@@ -168,8 +172,10 @@ class Cleaner
 	{
 		// --- catch any line that is still encased in <p></p> statements...
 		$line = preg_replace("/<p[^r][^>]+>/","\n",$line);
+		$line = preg_replace("/<table.*?>/","<table>",$line);
 		$line = str_ireplace("<p>","\n",$line);
 		$line = str_ireplace("</p>","\n",$line);
+		$line = str_ireplace("valign=\"top\"","",$line);
 		return $line;
 	}
 
@@ -588,8 +594,8 @@ class Cleaner
 		// --- works in IE and it kills this cleanit function which always looks for <p> tags for lists so
 		// --- let's just undo the conversion (I know this is lame but...)
 		// ---------------------------------------------------------------------------------------------------------------
-		$line = str_ireplace("<div","<p",$line);
-		$line = str_ireplace("div>","p>",$line);
+		//$line = str_ireplace("<div","<p",$line);
+		//$line = str_ireplace("div>","p>",$line);
 
 		// ---------------------------------------------------------------------------------------------------------------
 		// --- in case remove styles definitions option wasn't selected, let's remove all styles
